@@ -11,7 +11,7 @@ import { NotFoundPageComponent } from '../not-found-page/not-found-page.componen
 
 @NgModule({
   declarations: [
-    HomePageComponent,
+    //HomePageComponent,
     InvestementPageComponent,
     NotificationPageComponent,
     SettingsComponent,
