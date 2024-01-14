@@ -17,36 +17,64 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { RegisterPageComponent } from './pages/register-page/register-page.component';
-import { NotificationPageComponent } from './pages/notification-page/notification-page.component';
-import { InvestementPageComponent } from './pages/investement-page/investement-page.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
+import { LoginPageComponent } from './pages/auth/login-page/login-page.component';
+import { RegisterPageComponent } from './pages/auth/register-page/register-page.component';
+import { NotificationPageComponent } from './pages/user/notification-page/notification-page.component';
+import { InvestementPageComponent } from './pages/user/investement-page/investement-page.component';
+import { HomePageComponent } from './pages/user/home-page/home-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
-import { SettingsComponent } from './pages/settings/settings.component';
+import { SettingsComponent } from './pages/user/settings/settings.component';
 import { ModalService } from './services/modal.service';
-import { NavbarComponent } from './pages/navbar/navbar.component';
+// import { NavbarComponent } from './pages/navbar/navbar.component';
+// import { SidebarComponent } from './pages/sidebar/sidebar.component';
+import { MenuListItemComponent } from './pages/side-main-nav/ui/menu-list-item/menu-list-item.component';
+import { SideMainNavComponent } from './pages/side-main-nav/side-main-nav.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent,
-    RegisterPageComponent,
-    NotificationPageComponent,
-    InvestementPageComponent,
-    HomePageComponent,
-    NotFoundPageComponent,
-    SettingsComponent,
-    NavbarComponent,
+    // LoginPageComponent,
+    // RegisterPageComponent,
+    // NotificationPageComponent,
+    // InvestementPageComponent,
+    // HomePageComponent,
+    // NotFoundPageComponent,
+    // SettingsComponent,
+    SideMainNavComponent,
+    MenuListItemComponent,
+    // NotFoundPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatMenuModule,
+    MatDialogModule,
     HttpClientModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    LayoutModule,
+    MatFormFieldModule,
+    MatInputModule,
+    // NavbarComponent,
+    // SidebarComponent,
   ],
   providers: [
     UserService,
