@@ -1,0 +1,57 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sidenav.toggle()" class="menu-button" fxHide fxShow.lt-md>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span [ngClass]="{ 'hidden': opened ? false : true }">FxTrading</span>
+  <span >
+  </span>
+  <span class="head-menu">
+    <div class="search-bar">
+      <mat-form-field style="height: 20px;" appearance="outline" >
+        <mat-label>Search Something</mat-label>
+        <mat-icon matPrefix style="height: 20px;">search</mat-icon>
+        <input type="text" style="color:black; height:20px; border-color: black; border: 1px;" matInput placeholder="Type something..">
+        <!-- <mat-icon matSuffix>close</mat-icon> -->
+      </mat-form-field>
+    </div>
+      <!-- <button
+        mat-icon-button
+        aria-label="Example icon button with a vertical three dot icon"
+        ng-click="ctrl.endSearch()">
+        <mat-icon>search</mat-icon>
+      </button>
+        <input type="text" id="search-input" placeholder="Type something..">
+      <button
+        mat-icon-button
+        aria-label="Example icon button with a vertical three dot icon"
+        ng-click="ctrl.endSearch()">
+        <mat-icon>close</mat-icon>
+      </button> -->
+  </span>
+  <div class="container">
+    <div class="row">
+      <div>Account value: 0$</div>
+    </div>
+    <div class="row">
+      <div>user@gmail.com</div>
+    </div>
+    <div class="row">
+      <mat-icon>settings</mat-icon>
+    </div>
+    <div class="row">
+      <button mat-button (click)="signout()">
+        <mat-icon>logout</mat-icon> Log Out
+      </button>
+    </div>
+  </div>
+</mat-toolbar>
+<mat-sidenav-container >
+  <mat-sidenav #sidenav [mode]="opened === false ? 'over' : 'side'" [opened]="opened === true">
+    <mat-nav-list>
+      <app-menu-list-item *ngFor="let item of menu" [item]="item"></app-menu-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
