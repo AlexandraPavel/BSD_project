@@ -39,6 +39,8 @@ import { CreatePieListItemComponent } from './investement-page/side-view/dialog-
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { ItemService } from './investement-page/side-view/dialog-create-pie/service/item-slice.service';
 import { ListService } from './investement-page/side-view/dialog-create-pie/service/list-slices.service';
+import { InvestementService } from 'src/app/services/investement.service';
+// import { DialogEditPie } from './investement-page/pie-view/dialog-create-pie/dialog-edit-pie.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { ListService } from './investement-page/side-view/dialog-create-pie/serv
     PieListItemComponent,
     DialogCreatePie,
     CreatePieListItemComponent,
+    // DialogEditPie,
   ],
   imports: [
     CommonModule,
@@ -90,6 +93,7 @@ import { ListService } from './investement-page/side-view/dialog-create-pie/serv
     PieService,
     ItemService,
     ListService,
+    InvestementService,
   ]
 })
 export class AdminModule { }

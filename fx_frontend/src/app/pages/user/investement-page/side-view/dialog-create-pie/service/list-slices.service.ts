@@ -13,16 +13,16 @@ export class ListService {
   constructor() {
     // Initialize the list when the service is created
     this.setList([
-      {
-        displayName: 'Adobe',
-        value: '10',
-        route: 'home',
-      },
-      {
-        displayName: 'Google',
-        value: '10',
-        route: 'home',
-      },
+      // {
+      //   name: 'Adobe',
+      //   price: '10',
+      //   return: 0,
+      // },
+      // {
+      //   name: 'Google',
+      //   price: '10',
+      //   return: 0,
+      // },
       // Add more items if needed
     ]);
   }
@@ -51,7 +51,7 @@ export class ListService {
     const currentList = this.listSubject.getValue();
 
     // Check if the item already exists in the list
-    const existingItemIndex = currentList.findIndex(item => item.displayName === newItem.displayName);
+    const existingItemIndex = currentList.findIndex(item => item.name === newItem.name);
 
     if (existingItemIndex !== -1) {
       // If the item exists, update its properties

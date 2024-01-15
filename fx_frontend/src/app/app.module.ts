@@ -34,6 +34,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { IgxPieChartModule, IgxLegendModule, IgxItemLegendModule } from "igniteui-angular-charts";
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { InvestementService } from './services/investement.service';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     AuthenticationService,
     AuthGuard,
     ModalService,
+    InvestementService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],

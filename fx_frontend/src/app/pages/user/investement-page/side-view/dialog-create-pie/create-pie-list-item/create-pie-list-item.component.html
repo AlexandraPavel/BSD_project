@@ -1,8 +1,8 @@
 <div>
-    <div *ngIf="item.displayName !== ''">
-        <p>{{item.displayName}}</p>
+    <div *ngIf="item.name !== ''">
+        <p>{{item.name}}</p>
     </div>
-    <div *ngIf="item.displayName === ''">
+    <div *ngIf="item.name === ''">
         <mat-form-field style="background-color: white !important; color: black !important;"
              color="primary" appearance="outline">
             <mat-label style="background-color: white !important; color: black !important;"
@@ -19,13 +19,13 @@
             </mat-select>
         </mat-form-field>
     </div>
-    <mat-slider min="0" max="100" step="1" showTickMarks discrete [(ngModel)]="item.value" ngDefaultControl>
-        <input matSliderThumb [(ngModel)]="item.value" #slider/>
+    <mat-slider min="0" max="100" step="1" showTickMarks discrete [(ngModel)]="item.price" ngDefaultControl>
+        <input matSliderThumb [(ngModel)]="item.price" #slider/>
     </mat-slider>
 
     <mat-form-field class="example-user-input" appearance="outline" style="width: 100px;">
         <mat-label>Percentage</mat-label>
-        <input matInput type="number" [(ngModel)]="item.value"
+        <input matInput type="number" [(ngModel)]="item.price"
             style="background-color: white; color: black;"
             aria-label="Adds a delay between hovering over the button and displaying the tooltip">
     </mat-form-field>

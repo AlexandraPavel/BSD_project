@@ -20,7 +20,7 @@ export class CreatePieListItemComponent implements OnInit, OnChanges {
   toppings = new FormControl('');
   previusValue = '0';
 
-  toppingList: string[] = ['Adobe', 'Google', 'Facebook', 'Tesla'];
+  toppingList: string[] = ["ADBE","AAPL","AMZN"];
 
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
   @Input() item!: ProcentItem;
@@ -39,8 +39,8 @@ export class CreatePieListItemComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     console.log("Frate")
-    this.percent = parseInt(this.item.value, 10);
-    this.name = this.item.displayName;
+    this.percent = parseInt(this.item.price, 10);
+    this.name = this.item.name;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -52,9 +52,9 @@ export class CreatePieListItemComponent implements OnInit, OnChanges {
 
   ngDoCheck() {
     
-    if (this.item.value !== this.previusValue) {
+    if (this.item.price !== this.previusValue) {
       // console.log("changes")
-      this.previusValue = this.item.value;
+      this.previusValue = this.item.price;
       this.itemService.updateData(this.item);
     }
   }
@@ -65,7 +65,7 @@ export class CreatePieListItemComponent implements OnInit, OnChanges {
 
   onItemSelected(item: ProcentItem): void {
     if (!item.children || !item.children.length) {
-      if (item.route) {
+      if (item.return) {
         // Handle navigation or other logic if needed
       }
     }
@@ -81,6 +81,6 @@ export class CreatePieListItemComponent implements OnInit, OnChanges {
   }
 
   onToppingsSelectionChange(event: MatSelectChange): void {
-    this.item.displayName = event.value;
+    this.item.name = event.value;
   }
 }

@@ -1,12 +1,12 @@
 // import { FormControl } from "@angular/forms";
 
 export interface ProcentItem {
-  displayName: string;
+  name: string;
   disabled?: boolean;
-  value: string;
+  price: string;
   // currency: string,
   // value: number,
   // coins: object[],
-  route?: string;
+  return: number;
   children?:  ProcentItem[];
 }

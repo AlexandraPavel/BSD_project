@@ -1,4 +1,6 @@
 import { PieItem } from './side-view/ui/model/pie-item';
+import { backendUrl } from '../../../constants'
+
 
 export let menu: PieItem[] = [
   {

@@ -4,6 +4,7 @@ import { menu } from '../menu';
 import { PieItem } from './ui/model/pie-item';
 import {Component, Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { InvestementService } from 'src/app/services/investement.service';
 export interface DialogData {
   // animal: string;
   // name: string;
@@ -35,9 +36,15 @@ export class SideViewComponent {
   totalInvestment = 0;
   totalReturn = 0;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public investementServ: InvestementService,
+    public dialog: MatDialog) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.investementServ.pies.subscribe((elementList: PieItem[]) => {
+      this.menu = elementList;  // Update the menu when the shared data changes
+    });
+  }
 
 
   getAllInvestments() {

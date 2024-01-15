@@ -42,7 +42,8 @@
                     <input matInput 
                       style="background-color: white !important;
                       color: black !important"
-                      #namePie>
+                      [(ngModel)]="namePie">
+                      <!-- #namePie> -->
                   </mat-form-field>
                 </div>
                 <div fxFlex="20%">
@@ -54,7 +55,8 @@
                     <input matInput 
                       style="background-color: white !important;
                       color: black !important"
-                      #valueInvested>
+                      [(ngModel)]="valueInvested">
+                      <!-- #valueInvested> -->
                   </mat-form-field>
                 </div>
               </div>
@@ -72,8 +74,8 @@
                         </div>
                     </div>
                   </div>
-                    <div fxFlex="90%">
-                      <mat-nav-list style="height: 40px;">
+                    <div fxFlex="90%" *ngIf="list && list.length > 0">
+                      <mat-nav-list style="height: 40px;" >
                         <app-create-pie-list-item *ngFor="let item of list" [item]="item"></app-create-pie-list-item>
                       </mat-nav-list>
                       <!-- <div>

@@ -2,7 +2,7 @@
     <div fxFlex="30%">
       <app-side-view></app-side-view>
     </div>
-    <div fxFlex="70%">
+    <div fxFlex="70%" *ngIf="elementlist && elementlist.length > 0">
       <app-pie-view [item]="elementlist[0]" [itemAvailability]="true"></app-pie-view>
     </div>
 </div>

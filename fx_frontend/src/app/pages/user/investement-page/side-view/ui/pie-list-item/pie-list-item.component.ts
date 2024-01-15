@@ -58,10 +58,11 @@ export class PieListItemComponent implements OnInit {
         this.dialog.closeAll();
 
         if (!item.children || !item.children.length) {
-            if (item.route) {
+            // if (item.route) {
+                // console.log("Here", item)
                 this.pieService.updateData(item);
                 // this.router.navigate([item.route]);
-            }
+            // }
         }
 
         if (item.children && item.children.length) {

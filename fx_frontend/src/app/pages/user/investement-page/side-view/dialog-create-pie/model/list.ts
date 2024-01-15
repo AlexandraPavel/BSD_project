@@ -3,14 +3,14 @@ import { ProcentItem } from './procent-item';
 
 export let list: ProcentItem[] = [
   {
-    displayName: 'Adobe',
-    value: '10',
-    route: 'home',
+    name: 'Adobe',
+    price: '10',
+    return: 0,
   },
   {
-    displayName: 'Google',
-    value:'10',
-    route: 'home',
+    name: 'Google',
+    price: '10',
+    return: 0,
   },
   // {
   //   displayName: 'Tesla',
