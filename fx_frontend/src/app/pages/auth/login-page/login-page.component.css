@@ -1,44 +1,62 @@
+/* login.component.css */
+.screen-full-height {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* 100% of the viewport height */
+}
+
+.col-md-6 {
+  max-width: 600px; /* Adjust the maximum width of your login container */
+  width: 100%;
+}
+
 .container-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .login-logo-container {
-    background-color: rgb(141,213,170);
-  }
-  
-  .fx-grayscale-logo {
-    width: 350px;
-    height: 350px;
-  }
-  
-  .content {
-    width: 350px;
-  }
-  
-  .icon {
-    font-size: 24px;
-    color: #dddddd;
-    margin-right: 15px;
-    line-height: 31px;
-  }
-  
-  .col {
-    padding: 0;
-  }
-  
-  .invalid-feedback {
-    font-weight: bold;
-  }
-  
-  .btn-link {
-    padding: 0;
-  }
-  
-  .text-container {
-    margin-top: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
+  text-align: center;
+}
+
+.content {
+  background-color: #fff; /* Background color for the login container */
+  padding: 30px; 
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+
+.icon {
+  margin-right: 10px;
+  color: #555; /* Icon color */
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+
+.form-control {
+  margin-top: 5px;
+  text-align: left; /* Align input fields to the left */
+  width: 100%; /* Make sure input fields take up the full width of their container */
+
+}
+
+.btn-primary {
+  background-color: #007bff; /* Primary button color */
+  color: #fff;
+  margin-top: 15px; /* Increased margin above the button */
+}
+
+.btn-link {
+  color: #007bff; /* Link color */
+  margin-right: 10px;
+}
+
+.text-container {
+  margin-top: 20px;
+}

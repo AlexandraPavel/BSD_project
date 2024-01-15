@@ -10,7 +10,7 @@
           </h4>
           <form id="register" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="mb-3">
-              <label for="username">Username</label>
+              
               <input type="text" class="form-control form-control-sm" id="inputUsername" formControlName="username"
                 placeholder="Username" autocomplete="username"
                 [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
@@ -19,7 +19,6 @@
               </span>
             </div>
             <div class="mb-3">
-              <label for="email">Email</label>
               <input type="text" class="form-control form-control-sm" id="inputEmail" formControlName="email"
                 placeholder="Email address" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
               <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
@@ -27,7 +26,6 @@
               </div>
             </div>
             <div class="mb-3">
-              <label for="password">Password</label>
               <input type="password" class="form-control form-control-sm" id="inputPassword" formControlName="password"
                 placeholder="Password" autocomplete="new-password"
                 [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
@@ -38,7 +36,6 @@
               </div>
             </div>
             <div class="mb-3">
-              <label for="password">Repeat password</label>
               <input type="password" class="form-control form-control-sm" id="inputConfirmPassword"
                 formControlName="confirmPassword" placeholder="Repeat Password" autocomplete="new-password"
                 [ngClass]="{ 'is-invalid': submitted && f['confirmPassword'].errors }" />
