@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, booleanAttribute } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { ChartService } from '../../../../services/chart.service';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
@@ -49,6 +49,8 @@ export class PieViewComponent implements AfterViewInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource =  new MatTableDataSource(ELEMENT_DATA);
 
+  @Input({required: true}) item!: PieItem;
+  @Input({transform: booleanAttribute}) itemAvailability!: boolean; // Second,
   constructor(
     private service: ChartService,
     private pieService: PieService,
@@ -74,39 +76,11 @@ export class PieViewComponent implements AfterViewInit {
     }
   }
 
-
-
   ngOnInit() {
+    this.changeData(this.item);
+    // console.log("Item", this.item)
     this.pieService.data$.subscribe((newData) => {
       this.changeData(newData);
-    });
-
-    this.service.cryptoData().subscribe((res) => {
-      this.result = res;
-      this.coinPrice = this.result.data.coins.map((coins: any) => coins.price);
-      this.coinName = this.result.data.coins.map((coins: any) => coins.name);
-
-      this.backgroundColors = this.generateRandomColors(this.coinName.length);
-
-      if (this.chart) {
-        this.chart.destroy();
-      }
-
-      this.chart = new Chart('canvas', {
-        type: 'pie',
-        data: {
-          labels: this.coinName,
-          datasets: [
-            {
-              data: this.coinPrice,
-              borderColor: '#3e95cd',
-              label: 'Coin Price',
-              backgroundColor: this.backgroundColors, // Use the array of colors
-              borderWidth: 1,
-            },
-          ],
-        },
-      });
     });
   }
 

@@ -41,6 +41,8 @@ export class ListService {
 
     // Update the BehaviorSubject with the new list
     this.listSubject.next(updatedList);
+
+    console.log("list", this.listSubject)
   }
 
   updateList(newItem: ProcentItem): void {

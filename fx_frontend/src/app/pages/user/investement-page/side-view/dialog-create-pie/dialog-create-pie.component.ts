@@ -11,6 +11,8 @@ import { list } from './model/list';
 import { ListService } from './service/list-slices.service';
 import { ItemService } from './service/item-slice.service';
 import { ToastrService } from 'ngx-toastr';
+import { MatSelectChange } from '@angular/material/select';
+import { MatInput } from '@angular/material/input';
   
 @Component({ 
   selector: 'app-dialog-create-pie', 
@@ -21,6 +23,9 @@ export class DialogCreatePie implements OnInit {
   expanded = false;
   data_1 = {}
   saveButton = false;
+  namePie = "";
+  valueInvested = 0;
+  savedNamePie = true;
 
 
   showDelay = new FormControl(1000);
@@ -46,6 +51,7 @@ export class DialogCreatePie implements OnInit {
 
 
   ngOnInit(): void {
+    console.log(list)
    this.listService.list$.subscribe((list) => {
       this.list = list;
       this.calculateTotalProcent(list);
@@ -79,7 +85,8 @@ export class DialogCreatePie implements OnInit {
 
 
   onCancel(): void { 
-    this.dialogRef.close(); 
+    this.dialogRef.close();
+    this.data.newPie = undefined;
   } 
 
   onAddSlice(): void {
@@ -89,7 +96,40 @@ export class DialogCreatePie implements OnInit {
         displayName : '',
         route: 'example'
       }
-    // list.push(entry)
+    list.push(entry)
+    console.log("entry", entry)
     this.listService.addSlice(entry);
+  }
+
+  onNamePieChange(event: Event): void {
+    console.log("I did it",event.target)
+    // if (event.target?.addEventListener != null)
+    //     this.namePie = event.ta;
+  }
+
+  onSavePie(): void {
+    if (this.namePie != undefined && this.valueInvested != 0) {
+      let pie: PieItem = {
+        displayName: this.namePie,
+        // disabled?: boolean;
+        currency: 'EUR',
+        value: this.valueInvested,
+        coins: list,
+        // route?: string;
+        // children?: PieItem[];
+      }
+      this.data.newPie = pie;
+    } else {
+      let pie: PieItem = {
+        displayName: 'Ups',
+        // disabled?: boolean;
+        currency: 'EUR',
+        value: 99,
+        coins: list,
+        // route?: string;
+        // children?: PieItem[];
+      }
+      this.data.newPie = pie;
+    }
   }
 }

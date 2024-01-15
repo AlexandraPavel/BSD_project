@@ -28,6 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatInputModule,
     MatSliderModule,
     MatTooltipModule,
+    // MatInputModule,
     ToastrModule.forRoot(),
     
   ], declarations: [ ], 

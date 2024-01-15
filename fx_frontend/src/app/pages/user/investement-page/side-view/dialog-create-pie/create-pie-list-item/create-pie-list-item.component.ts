@@ -38,6 +38,7 @@ export class CreatePieListItemComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    console.log("Frate")
     this.percent = parseInt(this.item.value, 10);
     this.name = this.item.displayName;
   }

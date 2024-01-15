@@ -20,30 +20,54 @@
         <div  fxLayout="row" fxLayoutAlign="space-evenly">
             <div fxFlex="50%">
               <div fxLayout="column" fxLayoutAlign="space-evenly center">
-                <div fxFlex="70%">
+                <div fxFlex="40%">
                   <div class="pie-container">
                       <canvas id="canvas" >
                         chart
                       </canvas>
                   </div>
                 </div>
-                <div fxFlex="70%">
+                <div fxFlex="20%">
                   <h1 mat-dialog-title
                     style="background-color: white !important;
                             color:black !important;"
                     >Your Pie</h1> 
+                </div>
+                <div fxFlex="20%">
+                  <mat-form-field appearance="outline" >
+                    <mat-label
+                      style="background-color: white !important;
+                            color: black !important"
+                      >Name Your Pie</mat-label>
+                    <input matInput 
+                      style="background-color: white !important;
+                      color: black !important"
+                      #namePie>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20%">
+                  <mat-form-field appearance="outline">
+                    <mat-label
+                      style="background-color: white !important;
+                            color: black !important"
+                      >Value Invested</mat-label>
+                    <input matInput 
+                      style="background-color: white !important;
+                      color: black !important"
+                      #valueInvested>
+                  </mat-form-field>
                 </div>
               </div>
             </div>
             <div fxFlex="50%">
                 <div style="height: 20vw;" fxLayout="column" fxLayoutAlign="space-evenly start">
                     <div fxFlex="10%" >
-                      <div style=" gap:150px" fxLayout="row" fxLayoutAlign="space-evenly center">
+                      <div style="" fxLayout="row" fxLayoutAlign="space-evenly center">
                         <div fxFlex="50%" style="font-weight: bold; font-size:large"
                           >Total Procent: {{totalProcent}}</div>
                         <div fxFlex="50%">
                           <div style="display: flex; justify-content: flex-start;">
-                            <button mat-raised-button color="primary" [mat-dialog-close]="data.animal" cdkFocusInitial>Rebalance</button>
+                            <button mat-raised-button color="primary" [mat-dialog-close]="data.newPie" cdkFocusInitial>Rebalance</button>
                           </div>
                         </div>
                     </div>
@@ -69,11 +93,13 @@
           </div>
         </div>
         <div fxFlex="50%">
-          <div *ngIf="saveButton" style="display: flex; justify-content: flex-start;">
-            <button mat-raised-button disabled [mat-dialog-close]="data.animal" cdkFocusInitial>Save</button>
+          <div *ngIf="saveButton" >
+            <button mat-raised-button disabled style="display: flex; justify-content: flex-start;" >Save</button>
           </div>
-          <div *ngIf="!saveButton" style="display: flex; justify-content: flex-start;">
-            <button mat-raised-button color="primary" [mat-dialog-close]="data.animal" cdkFocusInitial>Save</button>
+          <!-- style="display: flex; justify-content: flex-start;" -->
+          <div *ngIf="!saveButton" style="display: flex; justify-content: flex-start;" [mat-dialog-close]="data.newPie">
+            <button mat-raised-button color="primary" 
+              (click)="onSavePie()">Save</button>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { PieItem } from './pie-item';
+import { PieItem } from './side-view/ui/model/pie-item';
 
 export let menu: PieItem[] = [
   {
@@ -41,25 +41,31 @@ export let menu: PieItem[] = [
         return: 10,
 
       },
-    ]
-  },
-  {
-    displayName: 'My Pie 3',
-    currency: 'RON',
-    value: 1000.10,
-    route: 'notification',
-    coins: [
-      {
-        price: 100,
-        name: 'Adobe',
-        return: 10,
-      },
       {
         price:2000,
-        name: 'Google',
+        name: 'Facebook',
         return: 10,
 
       },
     ]
   },
+  // {
+  //   displayName: 'My Pie 3',
+  //   currency: 'RON',
+  //   value: 1000.10,
+  //   route: 'notification',
+  //   coins: [
+  //     {
+  //       price: 100,
+  //       name: 'Adobe',
+  //       return: 10,
+  //     },
+  //     {
+  //       price:2000,
+  //       name: 'Google',
+  //       return: 10,
+
+  //     },
+  //   ]
+  // },
 ];
