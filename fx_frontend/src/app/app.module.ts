@@ -17,13 +17,6 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginPageComponent } from './pages/auth/login-page/login-page.component';
-import { RegisterPageComponent } from './pages/auth/register-page/register-page.component';
-import { NotificationPageComponent } from './pages/user/notification-page/notification-page.component';
-import { InvestementPageComponent } from './pages/user/investement-page/investement-page.component';
-import { HomePageComponent } from './pages/user/home-page/home-page.component';
-import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
-import { SettingsComponent } from './pages/user/settings/settings.component';
 import { ModalService } from './services/modal.service';
 // import { NavbarComponent } from './pages/navbar/navbar.component';
 // import { SidebarComponent } from './pages/sidebar/sidebar.component';
@@ -39,22 +32,14 @@ import { MatMenuModule } from '@angular/material/menu';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
-
+import { IgxPieChartModule, IgxLegendModule, IgxItemLegendModule } from "igniteui-angular-charts";
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
     AppComponent,
-    // LoginPageComponent,
-    // RegisterPageComponent,
-    // NotificationPageComponent,
-    // InvestementPageComponent,
-    // HomePageComponent,
-    // NotFoundPageComponent,
-    // SettingsComponent,
     SideMainNavComponent,
     MenuListItemComponent,
-    // NotFoundPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,8 +58,9 @@ import { MatInputModule } from '@angular/material/input';
     LayoutModule,
     MatFormFieldModule,
     MatInputModule,
-    // NavbarComponent,
-    // SidebarComponent,
+    IgxPieChartModule,
+    IgxLegendModule,
+    IgxItemLegendModule,
   ],
   providers: [
     UserService,
@@ -84,6 +70,7 @@ import { MatInputModule } from '@angular/material/input';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

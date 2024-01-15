@@ -1,0 +1,7 @@
+.pie-container {
+    height: 200 px;
+}
+.pie-container #canvas {
+    height: 400px !important;
+    width: 400px !important;
+}

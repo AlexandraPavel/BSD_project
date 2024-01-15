@@ -143,9 +143,9 @@ button.menu-button {
   display: none;
 }
 
-.menu-icon {
+/* .menu-icon {
   padding-right: 10px;
-}
+} */
 
 ::ng-deep button.mat-menu-item {
   -webkit-user-select: none;

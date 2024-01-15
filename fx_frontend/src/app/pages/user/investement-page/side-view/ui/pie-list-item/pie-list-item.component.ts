@@ -1,15 +1,16 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { NavItem } from '../model/nav-item';
-import { Router } from '@angular/router';
-import { NavService } from '../service/nav.service';
+import { PieItem } from '../model/pie-item';
+// import { Router } from '@angular/router';
+import { PieService } from '../service/pie.service';
 import { MatDialog } from '@angular/material/dialog';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-// import { AuthService } from '../../../../views/auth/auth.service';
+import { ChartService } from 'src/app/services/chart.service';
+
 
 @Component({
-    selector: 'app-menu-list-item',
-    templateUrl: './menu-list-item.component.html',
-    styleUrls: ['./menu-list-item.component.css'],
+    selector: 'app-pie-list-item',
+    templateUrl: './pie-list-item.component.html',
+    styleUrls: ['./pie-list-item.component.css'],
     animations: [
         trigger('indicatorRotate', [
             state('collapsed', style({ transform: 'rotate(0deg)' })),
@@ -20,16 +21,19 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         ])
     ]
 })
-export class MenuListItemComponent implements OnInit {
+export class PieListItemComponent implements OnInit {
     expanded = false;
+    data = {}
 
     @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
-    @Input() item!: NavItem;
+    @Input() item!: PieItem;
     @Input() depth!: number;
 
   constructor(
-    public navService: NavService,
-    public router: Router,
+    public pieService: PieService,
+    public chartService: ChartService,
+    
+    // public router: Router,
     // private authService: AuthService,
     private dialog: MatDialog
     ) {
@@ -40,20 +44,23 @@ export class MenuListItemComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.navService.getCurrentUrl().subscribe((url: string) => {
-            if (this.item.route) {
-                this.expanded = url.indexOf(`/${this.item.route}`) === 0;
-                this.ariaExpanded = this.expanded;
-            }
-        });
+       
+        // this.pieService.updateData()
+        // getCurrentUrl().subscribe((url: string) => {
+        //     if (this.item.route) {
+        //         this.expanded = url.indexOf(`/${this.item.route}`) === 0;
+        //         this.ariaExpanded = this.expanded;
+        //     }
+        // });
     }
 
-    onItemSelected(item: NavItem): void {
+    onItemSelected(item: PieItem): void {
         this.dialog.closeAll();
 
         if (!item.children || !item.children.length) {
             if (item.route) {
-                this.router.navigate([item.route]);
+                this.pieService.updateData(item);
+                // this.router.navigate([item.route]);
             }
         }
 

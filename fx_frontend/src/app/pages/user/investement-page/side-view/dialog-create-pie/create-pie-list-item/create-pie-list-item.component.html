@@ -1,0 +1,34 @@
+<div>
+    <div *ngIf="item.displayName !== ''">
+        <p>{{item.displayName}}</p>
+    </div>
+    <div *ngIf="item.displayName === ''">
+        <mat-form-field style="background-color: white !important; color: black !important;"
+             color="primary" appearance="outline">
+            <mat-label style="background-color: white !important; color: black !important;"
+            color="primary">Select company</mat-label>
+            <mat-select color="primary"
+                [formControl]="toppings"
+                (selectionChange)="onToppingsSelectionChange($event)"
+                appearance="outline"
+                style="background-color: white !important; color: black !important;">
+                <mat-select-trigger>
+                    {{toppings.value || ''}}
+                </mat-select-trigger>
+                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <mat-slider min="0" max="100" step="1" showTickMarks discrete [(ngModel)]="item.value" ngDefaultControl>
+        <input matSliderThumb [(ngModel)]="item.value" #slider/>
+    </mat-slider>
+
+    <mat-form-field class="example-user-input" appearance="outline" style="width: 100px;">
+        <mat-label>Percentage</mat-label>
+        <input matInput type="number" [(ngModel)]="item.value"
+            style="background-color: white; color: black;"
+            aria-label="Adds a delay between hovering over the button and displaying the tooltip">
+    </mat-form-field>
+
+    <mat-icon class="routeIcon text-responsive" color="primary" (click)="onDelete(item)">cancel</mat-icon>
+</div>
