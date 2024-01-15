@@ -33,10 +33,12 @@
       <div>Account value: 0$</div>
     </div>
     <div class="row">
-      <div>user@gmail.com</div>
+      <div>{{ getEmailFromLocalStorage() }}</div>
     </div>
     <div class="row">
+      <button mat-button (click)="openSettingsModal()">
       <mat-icon>settings</mat-icon>
+    </button>
     </div>
     <div class="row">
       <button mat-button (click)="signout()">

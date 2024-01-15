@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { menu } from './ui/model/menu';
 import { filter, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { SettingsModalService } from '../../services/settings-modal.service';
 
 @Component({
   selector: 'app-side-main-nav',
@@ -19,7 +20,8 @@ export class SideMainNavComponent implements OnDestroy {
 
   constructor(
     private media: MediaObserver,
-    private router: Router
+    private router: Router,
+    private settingsModalService: SettingsModalService
     ) {
     this.mediaWatcher = this.media.asObservable().pipe(
       filter((changes: MediaChange[]) => changes.length > 0),
@@ -28,6 +30,12 @@ export class SideMainNavComponent implements OnDestroy {
       .subscribe((mediaChange: MediaChange) => {
         this.handleMediaChange(mediaChange);
       });
+      
+  }
+  
+
+  openSettingsModal() {
+    this.settingsModalService.openSettingsModal();
   }
 
   private handleMediaChange(mediaChange: MediaChange): void {
@@ -45,4 +53,9 @@ export class SideMainNavComponent implements OnDestroy {
   signout() {
     this.router.navigate(['/login'])
   }
+
+  getEmailFromLocalStorage(): string | null {
+    return localStorage.getItem('email');
+  }
+  
 }
