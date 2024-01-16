@@ -47,6 +47,10 @@ import { HomePageComponent } from './pages/user/home-page/home-page.component';
 import { BlotterViewComponent } from './pages/user/home-page/blotter-view/blotter-view.component';
 import { FxRatesViewComponent } from './pages/user/home-page/fx-rates-view/fx-rates-view.component';
 import { WidgetComponent } from './pages/user/home-page/widget/widget.component';
+import { ItemService } from './pages/user/investement-page/side-view/dialog-create-pie/service/item-slice.service';
+import { ItemService2 } from './pages/user/investement-page/pie-view/dialog-create-pie/service/item-slice.service';
+import { ListService2 } from './pages/user/investement-page/pie-view/dialog-create-pie/service/list-slices.service';
+import { ListService } from './pages/user/investement-page/side-view/dialog-create-pie/service/list-slices.service';
 //import { WidgetComponent } from './pages/home-page/widget/widget.component';
 
 
@@ -92,6 +96,10 @@ import { WidgetComponent } from './pages/user/home-page/widget/widget.component'
     AuthGuard,
     ModalService,
     InvestementService,
+    ItemService,
+    ItemService2,
+    ListService2,
+    ListService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],

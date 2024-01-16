@@ -7,12 +7,9 @@ import { ChartService } from 'src/app/services/chart.service';
 import { PieItem } from '../ui/model/pie-item';
 import { PieService } from '../ui/service/pie.service';
 import { ProcentItem } from './model/procent-item';
-// import { list } from './model/list';
 import { ListService } from './service/list-slices.service';
-import { ItemService } from './service/item-slice.service';
+
 import { ToastrService } from 'ngx-toastr';
-import { MatSelectChange } from '@angular/material/select';
-import { MatInput } from '@angular/material/input';
 import { InvestementService } from 'src/app/services/investement.service';
   
 @Component({ 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Transaction } from 'src/app/models/transaction';
 import { Observable } from 'rxjs/internal/Observable';
-import { interval } from "rxjs";
+import { interval, of } from "rxjs";
 import { startWith, switchMap } from "rxjs/operators";
 
 import { Rate } from 'src/app/models/rate';
@@ -16,24 +16,23 @@ export class TradeService {
   ) { }
 
   getTransactions() {
-    return this.http.get(backendUrl.tradeService.getTransactions) as Observable<Transaction[]>
+    return this.http.get<any>(backendUrl.quotaService.pieName+'IT') as Observable<any>
   }
 
-  getTransactionsPolling() {
+  getTransactionsPolling(): Observable<any> {
     return interval(2000)
       .pipe(
         startWith(0),
-        switchMap(() => this.http.get(backendUrl.tradeService.getTransactions)
-        )
-      ) as Observable<Transaction[]>
+        switchMap(() => this.http.get<any>(backendUrl.quotaService.pieName+'IT'))
+      );
   }
-
   saveTransaction(transaction: Transaction) {
-    return this.http.post(backendUrl.tradeService.saveTransaction, transaction) as Observable<any>
+    return this.http.post(backendUrl.quotaService.buy, transaction) as Observable<any>
   }
 
   getCurrencies() {
-    return this.http.get(backendUrl.quoteService.getCurrencies) as Observable<string[]>
+    return of(['EUR', 'USD', 'JPY', 'BTC', 'RON', 'GBT']) as Observable<string[]>;
+    // this.http.get(backendUrl.quoteService.getCurrencies) as Observable<string[]>
   }
 
   getFxRate(primaryCcy: string, secondaryCcy: string) {
