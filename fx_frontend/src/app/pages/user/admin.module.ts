@@ -40,6 +40,10 @@ import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { ItemService } from './investement-page/side-view/dialog-create-pie/service/item-slice.service';
 import { ListService } from './investement-page/side-view/dialog-create-pie/service/list-slices.service';
 import { InvestementService } from 'src/app/services/investement.service';
+import { DialogEditPie } from './investement-page/pie-view/dialog-create-pie/dialog-edit-pie.component';
+import { EditPieListItemComponent } from './investement-page/pie-view/dialog-create-pie/edit-pie-list-item/edit-pie-list-item.component';
+import { ListService2 } from './investement-page/pie-view/dialog-create-pie/service/list-slices.service';
+import { ItemService2 } from './investement-page/pie-view/dialog-create-pie/service/item-slice.service';
 // import { DialogEditPie } from './investement-page/pie-view/dialog-create-pie/dialog-edit-pie.component';
 
 @NgModule({
@@ -54,7 +58,8 @@ import { InvestementService } from 'src/app/services/investement.service';
     PieListItemComponent,
     DialogCreatePie,
     CreatePieListItemComponent,
-    // DialogEditPie,
+    DialogEditPie,
+    EditPieListItemComponent,
   ],
   imports: [
     CommonModule,
@@ -94,6 +99,8 @@ import { InvestementService } from 'src/app/services/investement.service';
     ItemService,
     ListService,
     InvestementService,
+    ListService2,
+    ItemService2,
   ]
 })
 export class AdminModule { }

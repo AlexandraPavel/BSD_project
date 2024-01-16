@@ -8,6 +8,7 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { PieService } from '../side-view/ui/service/pie.service';
 import { PieItem } from '../side-view/ui/model/pie-item';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogEditPie } from './dialog-create-pie/dialog-edit-pie.component';
 
 
 export interface PeriodicElement {
@@ -28,6 +29,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./pie-view.component.css']
 })
 export class PieViewComponent implements AfterViewInit {
+  
   title = 'My Pie 1';
   chart: Chart<'pie', any, unknown> | undefined;
   result: any;
@@ -67,12 +69,7 @@ export class PieViewComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: Sort) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
@@ -157,22 +154,22 @@ export class PieViewComponent implements AfterViewInit {
     this.totalReturn = 0;
   }
 
-  openEditPie(): void {
+  openEditPie(pie: PieItem): void {
     console.log("Edit Pie")
-    // const dialogRef = this.dialog.open(DialogCreatePie, {
-    //   width: '250px',
-    //   data: { newPie: this.newPie}
-    // });
+    const dialogRef = this.dialog.open(DialogEditPie, {
+      width: '250px',
+      data: { pie: pie, chart: this.chart }
+    });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
     
-    //   if (result != undefined)
-    //     this.menu.push(result);
+      // if (result != undefined)
+      //   this.menu.push(result);
       
-    //   console.log("this.newPie", result)
-    //   this.newPie = undefined;
-    //   // this.animal = result;
-    // });
+      console.log("this.newPie", result)
+      // this.newPie = undefined;
+      // this.animal = result;
+    });
   }
 }

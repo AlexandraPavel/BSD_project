@@ -4,22 +4,23 @@ import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import {MatSliderModule} from '@angular/material/slider';
 import { ChartService } from 'src/app/services/chart.service';
-import { PieItem } from '../ui/model/pie-item';
-import { PieService } from '../ui/service/pie.service';
+import { PieItem } from '../../side-view/ui/model/pie-item';
+import { PieService } from '../../side-view/ui/service/pie.service';
 import { ProcentItem } from './model/procent-item';
 // import { list } from './model/list';
-import { ListService } from './service/list-slices.service';
-import { ItemService } from './service/item-slice.service';
+import { ListService2 } from './service/list-slices.service';
+import { ItemService2 } from './service/item-slice.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatSelectChange } from '@angular/material/select';
 import { MatInput } from '@angular/material/input';
 import { InvestementService } from 'src/app/services/investement.service';
+import { Chart } from 'chart.js/auto';
   
 @Component({ 
-  selector: 'app-dialog-create-pie', 
-  templateUrl: 'dialog-create-pie.component.html', 
+  selector: 'app-dialog-edit-pie', 
+  templateUrl: './dialog-edit-pie.component.html', 
 }) 
-export class DialogCreatePie implements OnInit, OnDestroy {
+export class DialogEditPie implements OnInit, OnDestroy {
   public list: ProcentItem[] | undefined;
   expanded = false;
   data_1 = {}
@@ -27,12 +28,13 @@ export class DialogCreatePie implements OnInit, OnDestroy {
   namePie = "";
   valueInvested = 0;
   savedNamePie = true;
+  chart: Chart<'pie', any, unknown> | undefined;
 
 
   showDelay = new FormControl(1000);
   hideDelay = new FormControl(2000); 
   procent = new FormControl(0);
-  totalProcent = 0;
+  totalProcent2 = 0;
 
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
   @Input() depth!: number;
@@ -40,34 +42,55 @@ export class DialogCreatePie implements OnInit, OnDestroy {
   constructor(
     public pieService: PieService,
     public chartService: ChartService,
-    private listService: ListService,
+    private listService: ListService2,
     private toastr: ToastrService,
     public investService: InvestementService,
-    public dialogRef: MatDialogRef<DialogCreatePie>, 
+    public dialogRef: MatDialogRef<DialogEditPie>, 
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.dialogRef.updateSize('60vw', '40vw');
+      this.namePie = data.pie.displayName
+      this.valueInvested = data.pie.value
+      this.list = data.pie.coins
+      this.chart = data.chart
+
+      console.log("Data", data)
       if (this.depth === undefined) {
         this.depth = 0;
       }
+
+//       coins
+// {name: 'AAPL', price: 0.2223455910379, return: 130}
+// currency
+// : 
+// "EUR"
+// displayName
+// : 
+// "ALexPie"
+// value
+// : 
+// 1930
      } 
   ngOnDestroy(): void {
+    this.listService.setList([])
     this.list = []
-    this.listService.setList([]);
     // throw new Error('Method not implemented.');
   }
 
 
   ngOnInit(): void {
     // console.log(list)
-   this.listService.list$.subscribe((list) => {
+    if (this.list) {
+      this.listService.setList(this.list);
+    }
+    this.listService.list$.subscribe((list) => {
       this.list = list;
       this.calculateTotalProcent(list);
     });
   }
 
   private calculateTotalProcent(list: ProcentItem[]): void {
-    this.totalProcent = list.map(item => parseInt(item.price, 10)).reduce((acc, currentValue) => acc + currentValue, 0);
-    if (this.totalProcent > 100) {
+    this.totalProcent2 = list.map(item => parseInt(item.price, 10)).reduce((acc, currentValue) => acc + currentValue, 0);
+    if (this.totalProcent2 > 100) {
       this.toastr.warning('Total percentage exceeds 100%', 'Warning');
       this.saveButton = true;
     } else
@@ -91,11 +114,11 @@ export class DialogCreatePie implements OnInit, OnDestroy {
 
 
 
-  onCancel(): void { 
+  onCancel(): void {
     this.listService.setList([])
     this.list = []
     this.dialogRef.close();
-    this.data.newPie = undefined;
+    // this.data.newPie = undefined;
   } 
 
   onAddSlice(): void {
@@ -125,7 +148,9 @@ export class DialogCreatePie implements OnInit, OnDestroy {
 
   onSavePie(): void {
     if (!this.list) {
-      this.list = [];
+      // this.list = [];
+      // this.listService.setList([])
+      this.list = []
     }
     if (this.namePie != undefined && this.valueInvested != 0) {
       let pie: PieItem = {
@@ -152,7 +177,7 @@ export class DialogCreatePie implements OnInit, OnDestroy {
       this.data.newPie = pie;
     }
 
-    this.investService.sendPie(this.data.newPie).subscribe((response) => {
+    this.investService.editPie(this.data.newPie).subscribe((response) => {
       console.log(response)
     })
   }

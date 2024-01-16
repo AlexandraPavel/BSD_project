@@ -1,0 +1,54 @@
+.mat-mdc-text-field-wrapper {
+    background-color: white !important;
+    color:black !important;
+}
+.mdc-text-field--filled {
+    background-color: white !important;
+    color:black !important;
+
+}
+
+#dialogForm.mdc-text-field--filled {
+    background-color: white !important;
+    color:black !important;
+}
+
+#divForm mat-form-field#dialogForm.mdc-text-field {
+    background-color: white !important;
+    color:black !important;
+}
+.mat-mdc-text-field-wrapper .mdc-text-field .ng-tns-c1205077789-12 .mdc-text-field--filled .mdc-text-field--no-label {
+    background-color: white !important;
+    color:black !important;
+}
+
+mat-slider {
+    width: 600px;
+  }
+
+  .custom-slider-container {
+    width: 80%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the slider horizontally */
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: white !important;
+    border-radius: 5px;
+  }
+
+  mat-form-field.mat-form-field.mat-white {
+    &.mat-focused {
+      .mat-form-field-label {
+          color: #FAFAFA;
+      }
+      .mat-form-field-ripple {
+          background-color: #FAFAFA !important;
+      }
+    }
+    .mat-form-field-label,.mat-form-field-label.mat-focused,
+    .mat-form-field.mat-focused.matform-field-should-float {
+        color: #FAFAFA;
+    }
+    .mat-form-field-underline, .mat-form-field-underline.mat-focused {
+        background-color: #FAFAFA;
+      }
+    }
