@@ -1,0 +1,30 @@
+.pie-container {
+    height: 50 px;
+}
+.pie-container #canvas {
+    height: 200px !important;
+    width: 200px !important;
+}
+
+table {
+    width: 100%;
+    background-color: white;
+    /* height: 100vw; */
+    height: 200px !important;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+  }
+
+.mat-mdc-header-row {
+    color: black !important;
+}
+
+.mat-mdc-row {
+    color: black !important;
+}
+
+.mat-sort-header-arrow {
+    color: black !important;
+}

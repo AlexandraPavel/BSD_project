@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.services.UserService;
 import com.example.demo.vo.UserAuthorizeResponseVo;
+import com.example.demo.vo.UserRequestNameVo;
 import com.example.demo.vo.UserTokenResponseVo;
 import com.example.demo.vo.UserRequestVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 
 @RestController
-//@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -20,6 +20,12 @@ public class UserController {
     @CrossOrigin
     public UserRequestVo getAnswersByQuestionId(@PathVariable Long userId) {
         return userService.findByUserId(userId);
+    }
+
+    @GetMapping("/user/name/{username}")
+    @CrossOrigin
+    public UserRequestNameVo getAnswersByQuestionName(@PathVariable String username) {
+        return userService.findByUsername(username);
     }
 
     @PostMapping("/user/register")

@@ -1,0 +1,110 @@
+<div style="height: 40vw; width: 60vw;
+            background-color: white !important;
+            color:black !important;">
+  <div style="height: 40vw;" fxLayout="column" fxLayoutAlign="space-evenly stretch">
+    <div fxFlex="5%">
+      <div mat-dialog-actions style="display: flex; justify-content: flex-end;">
+        <mat-icon class="routeIcon text-responsive" 
+          style="font-weight: bold; font-size: large; cursor: pointer;"
+          (click)="onCancel()">cancel</mat-icon>
+      </div>
+    </div>
+    <div fxFlex="10%"
+        style="font-weight: bold;
+                font-size:large;
+                align-self: center;
+            ">
+        Create your pie
+    </div>
+    <div fxFlex="60%">
+        <div  fxLayout="row" fxLayoutAlign="space-evenly">
+            <div fxFlex="50%">
+              <div fxLayout="column" fxLayoutAlign="space-evenly center">
+                <div fxFlex="40%">
+                  <div class="pie-container">
+                      <canvas id="canvas" >
+                        chart
+                      </canvas>
+                  </div>
+                </div>
+                <div fxFlex="20%">
+                  <h1 mat-dialog-title
+                    style="background-color: white !important;
+                            color:black !important;"
+                    >Your Pie</h1> 
+                </div>
+                <div fxFlex="20%">
+                  <mat-form-field appearance="outline" >
+                    <mat-label
+                      style="background-color: white !important;
+                            color: black !important"
+                      >Name Your Pie</mat-label>
+                    <input matInput 
+                      style="background-color: white !important;
+                      color: black !important"
+                      [(ngModel)]="namePie">
+                      <!-- #namePie> -->
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20%">
+                  <mat-form-field appearance="outline">
+                    <mat-label
+                      style="background-color: white !important;
+                            color: black !important"
+                      >Value Invested</mat-label>
+                    <input matInput 
+                      style="background-color: white !important;
+                      color: black !important"
+                      [(ngModel)]="valueInvested">
+                      <!-- #valueInvested> -->
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div fxFlex="50%">
+                <div style="height: 20vw;" fxLayout="column" fxLayoutAlign="space-evenly start">
+                    <div fxFlex="10%" >
+                      <div style="" fxLayout="row" fxLayoutAlign="space-evenly center">
+                        <div fxFlex="50%" style="font-weight: bold; font-size:large"
+                          >Total Procent: {{totalProcent}}</div>
+                        <div fxFlex="50%">
+                          <div style="display: flex; justify-content: flex-start;">
+                            <button mat-raised-button color="primary" [mat-dialog-close]="data.newPie" cdkFocusInitial>Rebalance</button>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                    <div fxFlex="90%" *ngIf="list && list.length > 0">
+                      <mat-nav-list style="height: 40px;" >
+                        <app-create-pie-list-item *ngFor="let item of list" [item]="item"></app-create-pie-list-item>
+                      </mat-nav-list>
+                      <!-- <div>
+                        <app-create-pie-list-item class="menu-child" *ngFor="let child of item.children" [item]="child" [depth]="depth+1"></app-create-pie-list-item>
+                      </div> -->
+                    </div>
+            
+                </div>
+              </div>
+        </div>
+    </div>
+    <div fxFlex="10%" style="width: 100%;">
+      <div fxLayout="row" style="gap: 16px;" fxLayoutAlign="center">
+        <div fxFlex="50%">
+          <div style="display: flex; justify-content: flex-end;">
+            <button mat-raised-button color="secondary" style=" cursor: pointer;" (click)="onAddSlice()">Add Slice</button>
+          </div>
+        </div>
+        <div fxFlex="50%">
+          <div *ngIf="saveButton" >
+            <button mat-raised-button disabled style="display: flex; justify-content: flex-start;" >Save</button>
+          </div>
+          <!-- style="display: flex; justify-content: flex-start;" -->
+          <div *ngIf="!saveButton" style="display: flex; justify-content: flex-start;" [mat-dialog-close]="data.newPie">
+            <button mat-raised-button color="primary" 
+              (click)="onSavePie()">Save</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+

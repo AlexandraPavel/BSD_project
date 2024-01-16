@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { backendUrl } from '../constants';
 import { ModalService } from './modal.service';
@@ -26,12 +26,16 @@ export class AuthenticationService {
     return this.isLoggedIn.asObservable();
   }
 
+
+
   login(username: string, password: string) {
+    console.log("bine")
     return this.http.post<any>(backendUrl.authService.authenticate, { username: username, password: password })
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         if (user && user.token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
+         
           localStorage.setItem('currentUser', JSON.stringify(user));
           localStorage.setItem('username', user.username);
           localStorage.setItem('email', user.email);

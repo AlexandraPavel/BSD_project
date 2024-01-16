@@ -40,6 +40,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { IgxPieChartModule, IgxLegendModule, IgxItemLegendModule } from "igniteui-angular-charts";
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { InvestementService } from './services/investement.service';
 import { HomePageComponent } from './pages/user/home-page/home-page.component';
 import { BlotterViewComponent } from './pages/user/home-page/blotter-view/blotter-view.component';
 import { FxRatesViewComponent } from './pages/user/home-page/fx-rates-view/fx-rates-view.component';
@@ -51,13 +54,6 @@ import { WidgetComponent } from './pages/user/home-page/widget/widget.component'
 @NgModule({
   declarations: [
     AppComponent,
-    // LoginPageComponent,
-    // RegisterPageComponent,
-    // NotificationPageComponent,
-    // InvestementPageComponent,
-    // HomePageComponent,
-    // NotFoundPageComponent,
-    // SettingsComponent,
     SideMainNavComponent,
     MenuListItemComponent,
     HomePageComponent,
@@ -85,8 +81,9 @@ import { WidgetComponent } from './pages/user/home-page/widget/widget.component'
     LayoutModule,
     MatFormFieldModule,
     MatInputModule,
-    // NavbarComponent,
-    // SidebarComponent,
+    IgxPieChartModule,
+    IgxLegendModule,
+    IgxItemLegendModule,
   ],
   providers: [
     UserService,
@@ -94,9 +91,11 @@ import { WidgetComponent } from './pages/user/home-page/widget/widget.component'
     TradeService,
     AuthGuard,
     ModalService,
+    InvestementService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

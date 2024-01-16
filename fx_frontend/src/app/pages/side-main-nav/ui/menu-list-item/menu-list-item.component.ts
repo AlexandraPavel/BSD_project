@@ -9,7 +9,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 @Component({
     selector: 'app-menu-list-item',
     templateUrl: './menu-list-item.component.html',
-    styleUrls: ['./menu-list-item.component.scss'],
+    styleUrls: ['./menu-list-item.component.css'],
     animations: [
         trigger('indicatorRotate', [
             state('collapsed', style({ transform: 'rotate(0deg)' })),

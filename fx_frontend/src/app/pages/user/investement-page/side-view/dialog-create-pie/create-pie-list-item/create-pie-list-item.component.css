@@ -1,0 +1,8 @@
+.example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
+
+  .mat-mdc-select-panel-above div.mat-mdc-select-panel {
+    background-color: white !important;
+  }

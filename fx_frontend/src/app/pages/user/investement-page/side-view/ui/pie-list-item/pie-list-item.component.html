@@ -1,0 +1,25 @@
+<!-- routerLink={{item.route}} -->
+<a mat-list-item [ngStyle]="{'padding-left': (depth * 12) + 'px'}"
+  class="menu-list-item" (click)="onItemSelected(item)">
+  <div style="height: 30px; width: 90%;" fxLayout="row" fxLayoutAlign="space-evenly stretch" >
+    <div fxFlex="30" style="margin-right: 20px;">
+      <span class="text-responsive">{{item.displayName}}</span>
+      <!-- <mat-icon class="routeIcon text-responsive">{{item.displayName}}</mat-icon> -->
+    </div>
+    <div fxFlex="30">
+      <span class="text-responsive">{{item.currency}}</span>
+    </div>
+    <div fxFlex="30">
+      <span class="text-responsive">${{item.value}}</span>
+    </div>
+  </div>
+  <span fxflex class="twistie-separator"></span>
+  <span  *ngIf="item.children && item.children.length">
+    <mat-icon class="menu-twistie" [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
+      expand_more
+    </mat-icon>
+  </span>
+</a>
+<div *ngIf="expanded">
+  <app-pie-list-item class="menu-child" *ngFor="let child of item.children" [item]="child" [depth]="depth+1"></app-pie-list-item>
+</div>

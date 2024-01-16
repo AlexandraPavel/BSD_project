@@ -1,0 +1,93 @@
+<!-- <p>side-view works!</p> -->
+<div style="height: 40vw; width: 90%;" fxLayout="column" fxLayoutAlign="space-evenly stretch" >
+    <div fxFlex="40">
+        <mat-card>
+            <mat-card-content>
+                <div style="height: 10vw;" fxLayout="column" fxLayoutAlign="space-evenly">
+                    <div fxFlex="20%" style="font-weight: bold; font-size:medium">
+                        USD ${{totalHoldings}}
+                    </div>
+                    <div fxFlex="40%">
+                        <div fxLayout="row">
+                            <div fxFlex="50">
+                                INVESTED
+                            </div>
+                            <div fxFlex="50">
+                                RETURN
+                            </div>
+                        </div>
+
+                        <div fxLayout="row">
+                            <div fxFlex="50">
+                                USD ${{totalInvestment}}
+                            </div>
+                            <div fxFlex="50">
+                                +USD ${{totalReturn}}(0.20%)
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div fxFlex="40%">
+                        <div fxLayout="row">
+                            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+                    
+                        </div>
+                    </div> -->
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div fxFlex="50">
+        <mat-card>
+            <mat-card-content>
+                <div style="height: 12vw;" fxLayout="column" fxLayoutAlign="space-evenly">
+                    <div fxFlex="80%">
+                        <mat-nav-list>
+                            <app-pie-list-item *ngFor="let item of menu" [item]="item"></app-pie-list-item>
+                        </mat-nav-list>
+                    </div>
+                    <div fxFlex="20%" style="align-self: center;">
+                        <button mat-raised-button color="primary"  (click)="openCreatePie()"
+                            >Create Pie</button>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div fxFlex="20">
+        <mat-card>
+            <mat-card-content>
+                <div style="height: 5vw;" fxLayout="column" fxLayoutAlign="space-evenly">
+                    <div fxFlex="40%" style="font-weight: bold; font-size:medium">
+                        Allocation
+                    </div>
+                    <div fxFlex="40%">
+                        <div fxLayout="row">
+                            <div fxFlex="50">
+                                {{noInvested}} Investments
+                            </div>
+                            <div fxFlex="50">
+                                USD ${{totalAllocatedMoney}}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div fxFlex="20%">
+                        
+                            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+                    </div> -->
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+<!-- <div fxLayout="row">
+    <mat-card>
+        <mat-card-content>Second card</mat-card-content>
+    </mat-card>
+</div>
+
+<div fxLayout="row">
+    <mat-card>
+        <mat-card-content>Third card</mat-card-content>
+    </mat-card>
+</div> -->
