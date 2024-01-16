@@ -3,6 +3,7 @@ import { Transaction } from 'src/app/models/transaction';
 import { TradeService } from '../../../../services/trade.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { prices } from 'src/app/constants';
 
 
 @Component({
@@ -36,16 +37,40 @@ export class BlotterViewComponent implements OnInit {
     this.tradeService.getTransactions()
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(response => {
+        console.log("Response", response)
         // Create transaction transform list by adding ccyPair
-        const transactionsWithCcyPair: Transaction[] = response
-          .map(transaction => ({ ...transaction, ccyPair: `${transaction.primaryCcy}/${transaction.secondaryCcy}` }))
+        const transactionsWithCcyPair: Transaction[] = response.pieSlices
+          .map((res: any) => {
+            // console.log(res);
+            let company = res.ticker
+            const foundItem = prices.find(item => item["Company Abvr"] === company);
+            if (foundItem != undefined) {
+              // console.log(this.currenciesPairs)
+                let trans: Transaction = {
+                  id: Math.random(),
+                  username: 'elena',
+                  primaryCcy: 'EUR',
+                  secondaryCcy: 'USD',
+                  rate: foundItem["Price"],
+                  action: 'BUY',
+                  notional: 10,
+                  tenor: company,
+                  date: 0,
+                  ccyPair: 'EUR/USD'
+                }
+                return trans;
+              }
+            return res;
+          })
+        // });
+        //     (transaction: { primaryCcy: any; secondaryCcy: any; }) => ({ ...transaction, ccyPair: `${transaction.primaryCcy}/${transaction.secondaryCcy}` }))
         this.transactions = transactionsWithCcyPair;
         this.initialTransactions = [...transactionsWithCcyPair];
-        // Get all Ccy pairs for select
-        this.currenciesPairs = this.transactions
-          .map(transaction => transaction.ccyPair)
-          .filter((x, i, a) => x && a.indexOf(x) === i);
-        this.filterBy();
+        // // Get all Ccy pairs for select
+        // this.currenciesPairs = this.transactions
+        //   .map(transaction => transaction.ccyPair)
+        //   .filter((x, i, a) => x && a.indexOf(x) === i);
+        // this.filterBy();
       });
   }
 

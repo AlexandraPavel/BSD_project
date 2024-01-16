@@ -26,20 +26,40 @@ export const backendUrl = {
 
 
 export const prices = [
-    {
-      "Company Name": "Adobe",
-      "Company Abvr": "ADBE",
-      "Price": 500.42
-    },
-    {
-      "Company Name": "Apple",
-      "Company Abvr": "AAPL",
-      "Price": 134.17
-    },
-    {
-      "Company Name": "Amazon",
-      "Company Abvr": "AMZN",
-      "Price": 312.84
-    }
-  ]
+  {
+    "Company Name": "Adobe",
+    "Company Abvr": "ADBE",
+    "Price": 500.42
+  },
+  {
+    "Company Name": "Apple",
+    "Company Abvr": "AAPL",
+    "Price": 134.17
+  },
+  {
+    "Company Name": "Amazon",
+    "Company Abvr": "AMZN",
+    "Price": 312.84
+  },
+  {
+    "Company Name": "Google",
+    "Company Abvr": "GOOG",
+    "Price": 312.84
+  },
+  {
+    "Company Name": "Blomberg",
+    "Company Abvr": "BLMG",
+    "Price": 312.84
+  },
+  {
+    "Company Name": "Facebook",
+    "Company Abvr": "FABK",
+    "Price": 312.84
+  },
+  {
+    "Company Name": "Stripe",
+    "Company Abvr": "STRP",
+    "Price": 312.84
+  }
+]
 
