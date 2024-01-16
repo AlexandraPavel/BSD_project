@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,18 +10,24 @@ import { UserService } from 'src/app/services/user.service';
 export class HomePageComponent implements OnInit {
   id = -1;
 
+  username: string | null = null;
+
   constructor(private modalService: ModalService,
     private userService: UserService) { }
 
   ngOnInit(): void {
-    const username: string = JSON.parse(localStorage.getItem('currentUser') || '').username || '';
+    this.getUsernameFromLocalStorage();
+  }
+
+  getUsernameFromLocalStorage(): void {
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      this.username = storedUsername;
+    }
+  }
+  const username: string = JSON.parse(localStorage.getItem('currentUser') || '').username || '';
     this.userService.getUserId(username).subscribe((response) => {
       this.id = response.id;
     })
-  }
-
-  openModal() {
-    this.modalService.showModal();
-  }
 
 }

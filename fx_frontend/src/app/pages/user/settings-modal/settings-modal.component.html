@@ -1,0 +1,64 @@
+<!-- settings-modal.component.html -->
+<div class="modal">
+    <div class="content">
+        <div class="options">
+            <div class="content-right">
+              <div class="option" (click)="showAccountDetails()">Account Details</div>
+              <div class="option" (click)="showCurrencyOptions()">Currency Options</div>
+              <div class="option" (click)="deleteAccount()">Delete Account</div>
+              <div class="close-button" (click)="closeModal()">X</div>
+            </div>
+            </div>
+      <div class="content-right">
+        <ng-container *ngIf="showContent">
+          <ng-container *ngIf="contentType === 'accountDetails'">
+            <h2>Account Details</h2>
+          </ng-container>
+  
+          <ng-container *ngIf="contentType === 'currencyOptions'">
+            <h2>Currency Options</h2>
+          </ng-container>
+  
+          <ng-container *ngIf="contentType === 'deleteAccount'">
+            <h2>Delete Account</h2>
+          </ng-container>
+        </ng-container>
+      
+        <ng-container *ngIf="showContent">
+          <ng-container *ngIf="contentType === 'accountDetails'">
+            <div>
+              <strong>Username:</strong> {{ username }}
+            </div>
+            <div>
+              <strong>Email:</strong> {{ email }}
+            </div>
+          </ng-container>
+  
+          <ng-container *ngIf="contentType === 'currencyOptions'">
+            <div>
+              <label>Default Buying Currency:</label>
+              <select>
+                <option value="USD">USD</option>
+                <option value="RON">RON</option>
+                <option value="EURO">EURO</option>
+              </select>
+            </div>
+            <div>
+              <label>Default Selling Currency:</label>
+              <select>
+                <option value="USD">USD</option>
+                <option value="RON">RON</option>
+                <option value="EURO">EURO</option>
+              </select>
+            </div>
+          </ng-container>
+  
+          <ng-container *ngIf="contentType === 'deleteAccount'">
+            <button (click)="deleteAccount()">Delete Account</button>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  
+  </div>
+  

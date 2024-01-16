@@ -1,5 +1,7 @@
 export const authApi = 'http://localhost:8200'
 export const quatoApi = 'http://localhost:8080'
+export const tradeApi = 'http://localhost:8210'
+export const quoteApi = 'http://localhost:8220'
 export const backendUrl = {
   authService: {
     authenticate: `${authApi}/user/authenticate`,
@@ -11,9 +13,16 @@ export const backendUrl = {
     sell: `${quatoApi}/api/v1/pie/sell`,
     pieName: `${quatoApi}/api/v1/pie/`, // {name}
     pieUser: `${quatoApi}/api/v1/pie?user=` // id
+  },
+  tradeService: {
+    getTransactions: `${tradeApi}/transactions`,
+    saveTransaction: `${tradeApi}/transactions`,
+  },
+  quoteService: {
+    getCurrencies: `${quoteApi}/currencies`,
+    getFxRate: `${quoteApi}/fx-rate`
   }
 }
-
 
 export const prices = [
     {
@@ -32,3 +41,4 @@ export const prices = [
       "Price": 312.84
     }
   ]
+
