@@ -1,4 +1,4 @@
-export const authApi = 'http://localhost:8200'
+export const authApi = 'http://localhost:8080'
 export const quatoApi = 'http://localhost:8080'
 export const tradeApi = 'http://localhost:8210'
 export const quoteApi = 'http://localhost:8220'
@@ -23,6 +23,7 @@ export const backendUrl = {
     getFxRate: `${quoteApi}/fx-rate`
   }
 }
+
 
 export const prices = [
     {

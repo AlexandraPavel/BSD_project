@@ -12,6 +12,7 @@ import com.example.demo.repository.UserLoginRepository;
 import com.example.demo.repository.UsersRepository;
 import com.example.demo.vo.UserAuthorizeResponseVo;
 import com.example.demo.vo.UserRequestVo;
+import com.example.demo.vo.UserRequestNameVo;
 import com.example.demo.vo.UserTokenResponseVo;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,16 @@ public class UserService {
                 .build();
     }
 
+    public UserRequestNameVo findByUsername(String username) {
 
+        UserModel user = userRepository.findUserByStatusAndName(username);
+
+        return UserRequestNameVo.builder()
+                .id(user.getUserId())
+                .username(user.getUserName())
+                .email(user.getEmail())
+                .build();
+    }
 
     public void registerNewUser(UserRequestVo userRequestVo) {
         UserModel user = UserModel.builder()

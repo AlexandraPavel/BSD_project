@@ -17,6 +17,10 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsernameFromLocalStorage();
+    let userName: string = JSON.parse(localStorage.getItem('currentUser') || '').username || '';
+    this.userService.getUserId(userName).subscribe((response) => {
+      this.id = response.id;
+    })
   }
 
   getUsernameFromLocalStorage(): void {
@@ -25,9 +29,6 @@ export class HomePageComponent implements OnInit {
       this.username = storedUsername;
     }
   }
-  const username: string = JSON.parse(localStorage.getItem('currentUser') || '').username || '';
-    this.userService.getUserId(username).subscribe((response) => {
-      this.id = response.id;
-    })
+  
 
 }

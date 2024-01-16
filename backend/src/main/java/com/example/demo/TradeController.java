@@ -8,15 +8,10 @@ import java.io.IOException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+//@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1")
 public class TradeController {
 
@@ -24,6 +19,7 @@ public class TradeController {
     private PieService pieService;
 
     @PostMapping("/pie/buy")
+    @CrossOrigin
     public ResponseEntity<Pie> addSlice(@RequestBody String body) {
 
         System.out.println("Pie: " + body);
@@ -31,6 +27,7 @@ public class TradeController {
     }
 
     @PostMapping("/pie/sell")
+    @CrossOrigin
     public ResponseEntity<Pie> sellFromPie(@RequestBody String body) {
 
         System.out.println("Pie: " + body);
@@ -42,26 +39,29 @@ public class TradeController {
     }
 
     @GetMapping("/pie")
+    @CrossOrigin
     public ResponseEntity<List<Pie>> getAllPiesForAnUser(@RequestParam("user") Long userId) {
 
         return ResponseEntity.ok(pieService.getAllUserPies(userId));
     }
 
     @GetMapping("/pie/{name}")
+    @CrossOrigin
     public ResponseEntity<Pie> getPie(@PathVariable String name) {
 
         return ResponseEntity.ok(pieService.getPie(name));
     }
 
     @PostMapping("/updatePrices")
+    @CrossOrigin
     public ResponseEntity<String> updatePrices(@RequestBody String body) {
 
         try {
 //            System.out.println(body);
             List<Price> priceList = new ObjectMapper().readValue(
-                body,
-                new TypeReference<List<Price>>() {
-                });
+                    body,
+                    new TypeReference<List<Price>>() {
+                    });
             priceList.forEach(price -> prices.put(price.companyAbvr(), price.price()));
             System.out.println("Prices updated:\n" + prices);
         } catch (IOException e) {
